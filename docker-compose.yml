@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: contract61_bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    networks:
+      - contract61_network
+
+  # Optional: FastAPI admin panel (future)
+  # api:
+  #   build: .
+  #   container_name: contract61_api
+  #   command: python api.py
+  #   ports:
+  #     - "8000:8000"
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - ./data:/app/data
+  #   networks:
+  #     - contract61_network
+
+networks:
+  contract61_network:
+    driver: bridge
